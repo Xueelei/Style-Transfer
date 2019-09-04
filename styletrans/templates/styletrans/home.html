@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    {% load staticfiles %}
+    <!-- Bootstrap -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+      integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
+      crossorigin="anonymous"
+    />
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.1.0/css/all.css"
+      integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt"
+      crossorigin="anonymous"
+    />
+    <style>
+      .overlay {
+        position: absolute;
+        top: 0px;
+        bottom: 0px;
+        left: 0px;
+        right: 0px;
+        height: 150px;
+        width: 150px;
+        opacity: 0;
+        transition: 0.5s ease;
+        background-color: #808688;
+      }
+      .container1:hover .overlay {
+        opacity: 0.5;
+      }
+      .text {
+        color: whitesmoke;
+        font-size: 36px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        -webkit-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+        text-align: center;
+      }
+      button,
+      input[type="submit"],
+      input[type="reset"] {
+        background: none;
+        color: inherit;
+        border: none;
+        padding: 0;
+        font: inherit;
+        cursor: pointer;
+        outline: inherit;
+      }
+    </style>
+    <!-- Bootstrap core CSS -->
+
+    <title>Style Transfer</title>
+  </head>
+  <!-- style="background-color: blueviolet,  -->
+  <body background="../static/style-images/out.jpg">
+    <div
+      class="jumbotron jumbotron-billboard rounded-lg mx-5 my-5 all"
+      style="opacity: 0.95"
+    >
+      <div class="page-header">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+              <div class="page-caption">
+                <h1
+                  style="font-size: 46px; line-height: 1; color: #000; font-weight: 600; text-align: center;"
+                >
+                  Style Transfer
+                </h1>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container col-md-8 col-sm-offset-2 text-center my-5">
+        <div class="container col-md-8 col-sm-offset-2 text-center">
+          <!-- <div className="jumbotron jumbotron-billboard"> -->
+          <h2>Select a picture</h2>
+          <br />
+
+          {% if picture.picture %}
+          <img src="{% url 'photo' picture.id %}" width="100px" />
+          {% endif %}
+
+          <form
+            enctype="multipart/form-data"
+            action="{% url 'add_picture' %}"
+            method="post"
+          >
+            <table>
+              {% for field in form.visible_fields %}
+              <tr>
+                <td>{{ field.label_tag }}</td>
+                <td>{{ field }}</td>
+                <td class="error">
+                  {% for error in field.errors %} {{ error }} {% endfor %}
+                </td>
+              </tr>
+              {% endfor %}
+              <tr>
+                <td colspan="3">
+                  <input
+                    type="submit"
+                    id="id_update_profile_button"
+                    value="Upload picture"
+                    class="btn btn-outline-secondary"
+                    style="width:120px; height:40px"
+                  />
+                </td>
+              </tr>
+            </table>
+
+            {% csrf_token %}
+          </form>
+        </div>
+
+        <br />
+
+        <div class="container" style="margin-bottom: -70px">
+          <h2>Select a style</h2>
+          <form method="POST" action="{% url 'select' %}">
+            {% csrf_token %}
+            <div class="row text-center">
+              <table align="center">
+                <tr class="text-center">
+                  <td>
+                    <div class="col-lg-3 col-md-6 mb-4">
+                      <div class="row h-100 align-items-end container1">
+                        <img
+                          name="style"
+                          value="style1"
+                          src="../static/style-images/style1.jpg"
+                          width="150px"
+                          height="150px"
+                        />
+                        <div class="overlay">
+                          <button name="style" value="style1" class="text">
+                            select
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="col-lg-3 col-md-6 mb-4">
+                      <div class="row h-100 align-items-end container1">
+                        <img
+                          name="style"
+                          value="style2"
+                          src="../static/style-images/style2.jpg"
+                          width="150px"
+                          height="150px"
+                        />
+                        <div class="overlay">
+                          <button name="style" value="style2" class="text">
+                            select
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="col-lg-3 col-md-6 mb-4">
+                      <div class="row h-100 align-items-end container1">
+                        <img
+                          name="style"
+                          value="style3"
+                          src="../static/style-images/style3.jpg"
+                          width="150px"
+                          height="150px"
+                        />
+                        <div class="overlay">
+                          <button name="style" value="style3" class="text">
+                            select
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="col-lg-3 col-md-6 mb-4">
+                      <div class="row h-100 align-items-end container1">
+                        <img
+                          name="style"
+                          value="style4"
+                          src="../static/style-images/style4.jpg"
+                          width="150px"
+                          height="150px"
+                        />
+                        <div class="overlay">
+                          <button name="style" value="style4" class="text">
+                            select
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    {% load staticfiles %}
+    <!-- <link href="{% static 'socialnetwork/bootstrap.css' %}" rel="stylesheet" type="text/css"> -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+      integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
+      crossorigin="anonymous"
+    />
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.1.0/css/all.css"
+      integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt"
+      crossorigin="anonymous"
+    />
+    <style>
+      .overlay {
+        position: absolute;
+        top: 0px;
+        bottom: 0px;
+        left: 0px;
+        right: 0px;
+        height: 150px;
+        width: 150px;
+        opacity: 0;
+        transition: 0.5s ease;
+        background-color: #808688;
+      }
+      .container1:hover .overlay {
+        opacity: 0.5;
+      }
+      .text {
+        color: whitesmoke;
+        font-size: 36px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        -webkit-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+        text-align: center;
+      }
+    </style>
+    <!-- Bootstrap core CSS -->
+
+    <title>Style Transfer</title>
+  </head>
+
+  <body background="../static/style-images/out.jpg">
+    <div
+      class="jumbotron jumbotron-billboard rounded-lg mx-5 my-5"
+      style="opacity: 0.95"
+    >
+      <div class="page-header">
+        <div class="container-fluid">
+          <div class="row">
+            <div
+              class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12"
+              align="center"
+            >
+              <div class="page-caption">
+                <h1
+                  style="font-size: 46px; line-height: 1; color: #000; font-weight: 600; text-align: center;"
+                >
+                  Style Transfer Result:
+                </h1>
+              </div>
+
+              <div style="margin-top:40px">
+                <img src="{{ result }}" />
+              </div>
+              <div style="margin-top:30px; margin-bottom: -30px">
+                <button
+                  class="btn btn-outline-secondary text-uppercase"
+                  style="height: 60px; width: 120px; font-size: 32px; text-align: center; border: none;"
+                >
+                  <a href="{% url 'home' %}">back</a>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
